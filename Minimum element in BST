@@ -1,0 +1,19 @@
+class Solution {
+    // Function to find the minimum element in the given BST.
+    int res = Integer.MAX_VALUE;
+    void solve(Node root)
+    {
+        if(root == null) return;
+        if(root.left == null) 
+        {
+            res = Math.min(res,root.data);
+            return;
+        }
+        solve(root.left);
+    }
+    int minValue(Node root) {
+        // code here
+        solve(root);
+        return res;
+    }
+}
