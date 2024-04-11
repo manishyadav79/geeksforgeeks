@@ -1,0 +1,17 @@
+class Solution{
+    
+    // function to convert a given Gray equivalent n to Binary equivalent.
+    public static int grayToBinary(int n) {
+        
+        // Your code here
+     
+     String g=Integer.toBinaryString(n);
+     String b=""+g.charAt(0);
+     for(int i=1;i<g.length();i++){
+         if(g.charAt(i)==b.charAt(i-1))b+="0";
+         else b+="1";
+     }
+     return Integer.parseInt(b,2);
+    }
+       
+}
