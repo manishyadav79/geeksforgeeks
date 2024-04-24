@@ -2,18 +2,29 @@ class Solution
 {
     public static int ways(int n, int m)
     {
+        
+         int modulo = 1000000007;
+       // Initialize a 2D array to store the number of ways to reach each point
+        int[][] dp = new int[n + 1][m + 1];
+        
+        // Iterate through each point in the grid
+         
+        for (int j = 0; j <= m; j++) {
+          for (int i = 0; i <= n; i++)  {
+                // Base case: there is only one way to reach the starting point (0, 0)
+                if (i == 0 || j == 0) {
+                    dp[i][j] = 1;
+                    continue;
+                }
+                
+                // Calculate the number of ways to reach the current point
+                // by summing the number of ways from the left and from above
+                dp[i][j] = (dp[i - 1][j] + dp[i][j - 1]) % modulo;
+            }
+        }
+        
+        // Return the number of ways to reach the target point (x, y)
+        return dp[n][m];
         // complete the function
-        return solve(n,m);
-    }
-    public static int solve(int i,int j){
-        if(i < 0 || j < 0){
-            return 0;
-        }
-        if(i == 0 && j == 0){
-            return 1;
-        }
-        int l = solve(i-1,j);
-        int r = solve(i,j-1);
-        return l + r;
     }
 }
