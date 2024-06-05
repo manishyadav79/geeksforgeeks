@@ -1,0 +1,51 @@
+class Solution {
+    long findSwapValues(long a[], int n, long b[], int m) {
+        
+        long s1=0,s2=0;
+        for(long k:a)s1+=k;
+        for(long k:b)s2+=k;
+        
+        if(s1<s2)
+        {   Arrays.sort(b);
+            if((s2-s1)%2==1)
+            {
+                return -1;
+            }
+            long diff=(s2-s1)/2;
+            for(int i=0;i<a.length;i++)
+            {
+                if(search(a[i]+diff,b,b.length))return 1;
+            }
+            return -1;
+        }else{Arrays.sort(a);
+             if((s1-s2)%2==1)
+            {
+                return -1;
+            }
+            long diff=(s1-s2)/2;
+            for(int i=0;i<b.length;i++)
+            {
+                if(search(b[i]+diff,a,a.length))return 1;
+            }
+            return -1;
+        }
+    }
+    private boolean search(long k,long a[],int n)
+    {
+        int low=0,high=n-1;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            if(a[mid]==k)
+            {
+                return true;
+            }
+            if(a[mid]>k)
+            {
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }return false;
+    }
+}
